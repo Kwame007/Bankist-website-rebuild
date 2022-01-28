@@ -1,7 +1,7 @@
 /* The page is NOT responsive. You can implement responsiveness yourself if you wanna have some fun 😃 */
 
 :root {
-  --color-primary: #5ec576;
+  --color-primary: #5dd5b0;
   --color-secondary: #ffcb03;
   --color-tertiary: #ff585f;
   --color-primary-darker: #4bbb7d;
@@ -21,7 +21,7 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 60%;
   box-sizing: border-box;
 }
 
@@ -30,7 +30,7 @@ body {
   font-weight: 300;
   color: #444;
   line-height: 1.9;
-  background-color: #f3f3f3;
+  background-color: #fff;
 }
 
 /* GENERAL ELEMENTS */
@@ -181,58 +181,42 @@ img {
 
 .header__title {
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: center;
   align-items: center;
-  flex: 1;
   background: #fff8f4;
   height: 100%;
 }
 .header__title div {
   padding: 2rem;
-  transform: translateY(120px);
 }
 
 h1 {
-  font-size: 5.5rem;
+  font-size: 5rem;
   line-height: 1.35;
 }
 
-h4 {
-  font-size: 2.4rem;
+.header__title p {
+  font-size: 1.5rem;
   font-weight: 500;
+  letter-spacing: 1px;
+  margin: 1.5rem 0;
 }
 
 .header__img {
   width: 100%;
-  grid-column: 2 / 3;
-  grid-row: 1 / span 4;
-  transform: translateY(-6rem);
 }
 
 .highlight {
-  position: relative;
+  color: #5dd5b0;
 }
-
-/* .highlight::after {
-  display: block;
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-  opacity: 0.7;
-  transform: scale(1.07, 1.05) skewX(-15deg);
-  background-image: var(--gradient-primary);
-} */
 
 /* FEATURES */
 .features {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  margin: 0 12rem;
+  grid-template-columns: 1fr;
+  /* gap: 2rem; */
+  margin: 0 5rem;
 }
 
 .features__img {
@@ -240,12 +224,24 @@ h4 {
 }
 
 .features__feature {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
   align-self: center;
   justify-self: center;
-  width: 70%;
-  font-size: 1.5rem;
+  width: 80%;
+  font-size: 2rem;
 }
-
+.features__feature div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background: #fff8f4;
+  min-height: 100%;
+  padding: 1.5rem;
+}
 .features__icon {
   display: flex;
   align-items: center;
@@ -272,8 +268,7 @@ h4 {
 .operations {
   max-width: 100rem;
   margin: 12rem auto 0 auto;
-
-  background-color: #fff;
+  background-color: #fff8f4;
 }
 
 .operations__tab-container {
@@ -670,4 +665,47 @@ h4 {
   color: #bbb;
   font-size: 1.5rem;
   font-weight: 400;
+}
+
+@media (max-width: 968px) {
+  .nav__links {
+    display: none;
+  }
+  .header__title {
+    grid-template-columns: 1fr;
+  }
+  .features {
+    grid-template-columns: 1fr;
+    gap: 1px;
+    margin: 0;
+  }
+  .features__feature {
+    grid-template-columns: 1fr;
+    margin-bottom: 1rem;
+  }
+}
+@media (max-width: 540px) {
+  h1 {
+    font-size: 3rem;
+  }
+  .header__title p {
+    margin: 3rem 0;
+    line-height: 1.3;
+    /* letter-spacing: .5px; */
+  }
+  .operations__tab-container button {
+    display: none;
+  }
+  .operations__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  .footer__nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
 }
