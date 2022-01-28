@@ -4,7 +4,7 @@
   --color-primary: #5dd5b0;
   --color-secondary: #ffe162;
   --color-tertiary: #fe777b;
-  --color-primary-darker: #4bbb7d;
+  --color-primary-darker: #51a88e;
   --color-secondary-darker: #ffbb00;
   --color-tertiary-darker: #e6474f;
   --color-primary-opacity: #5ec5763a;
@@ -110,7 +110,7 @@ img {
 }
 
 .lazy-img {
-  /* filter: blur(20px); */
+  filter: blur(20px);
 }
 
 /* NAVIGATION */
@@ -655,6 +655,15 @@ h1 {
 .hidden {
   visibility: hidden;
   opacity: 0;
+}
+small {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: #ccc;
+  font-size: 10px;
+  font-weight: 200;
+  margin-top: 3rem;
 }
 
 /* COOKIE MESSAGE */
