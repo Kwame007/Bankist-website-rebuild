@@ -2,11 +2,11 @@
 
 :root {
   --color-primary: #5dd5b0;
-  --color-secondary: #ffcb03;
-  --color-tertiary: #ff585f;
+  --color-secondary: #ffe162;
+  --color-tertiary: #fe777b;
   --color-primary-darker: #4bbb7d;
   --color-secondary-darker: #ffbb00;
-  --color-tertiary-darker: #fd424b;
+  --color-tertiary-darker: #e6474f;
   --color-primary-opacity: #5ec5763a;
   --color-secondary-opacity: #ffcd0331;
   --color-tertiary-opacity: #ff58602d;
@@ -110,7 +110,7 @@ img {
 }
 
 .lazy-img {
-  filter: blur(20px);
+  /* filter: blur(20px); */
 }
 
 /* NAVIGATION */
@@ -221,6 +221,7 @@ h1 {
 
 .features__img {
   width: 100%;
+  box-shadow: rgba(2, 12, 27, 0.7) 0px 10px 15px -10px;
 }
 
 .features__feature {
@@ -233,6 +234,7 @@ h1 {
   width: 80%;
   font-size: 2rem;
 }
+
 .features__feature div {
   display: flex;
   flex-direction: column;
@@ -668,6 +670,9 @@ h1 {
 }
 
 @media (max-width: 968px) {
+  .nav {
+    padding: 0;
+  }
   .nav__links {
     display: none;
   }
@@ -685,13 +690,19 @@ h1 {
   }
 }
 @media (max-width: 540px) {
+  .nav {
+    padding: 0;
+  }
   h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .header__title p {
     margin: 3rem 0;
     line-height: 1.3;
     /* letter-spacing: .5px; */
+  }
+  .section__header {
+    font-size: 2.3rem;
   }
   .operations__tab-container button {
     display: none;
@@ -707,5 +718,9 @@ h1 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+  }
+  .section--sign-up .btn {
+    font-size: 1rem;
+    padding: 1rem;
   }
 }
