@@ -29,3 +29,40 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+// smooth scroll
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const sectionOne = document.getElementById('section--1');
+
+// button event listener
+btnScrollTo.addEventListener('click', function (e) {
+  //  get section coordinates
+  const sectionOneCoords = sectionOne.getBoundingClientRect();
+  console.log(sectionOneCoords);
+
+  // console.log(e.target.getBoundingClientRect());
+  // console.log('current scroll (x/y)', window.pageXOffset, window.pageYOffset);
+  // console.log(
+  //   'height/width',
+  //   document.documentElement.clientHeight,
+  //   document.documentElement.clientWidth
+  // );
+
+  // scrolling
+  // window.scrollTo(
+  //   sectionOneCoords.left + window.pageXOffset,
+  //   sectionOneCoords.top + window.pageYOffset
+  // );
+
+  // alternative (old school)
+  // window.scrollTo({
+  //   left: sectionOneCoords.left + window.pageXOffset,
+  //   top: sectionOneCoords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+
+  // new way
+  sectionOne.scrollIntoView({ behavior: 'smooth' });
+});
+///////////////////////////////
+////////////////////////////////
