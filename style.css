@@ -189,10 +189,11 @@ img {
 }
 .header__title div {
   padding: 2rem;
+  margin-left: 10rem;
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: 6rem;
   line-height: 1.35;
 }
 
@@ -697,6 +698,10 @@ small {
     grid-template-columns: 1fr;
     margin-bottom: 1rem;
   }
+  .header__title div {
+    padding: 2rem;
+    margin-left: 0;
+  }
 }
 @media (max-width: 540px) {
   .nav {
@@ -709,6 +714,10 @@ small {
     margin: 3rem 0;
     line-height: 1.3;
     /* letter-spacing: .5px; */
+  }
+  .header__title div {
+    padding: 2rem;
+    margin-left: 0;
   }
   .section__header {
     font-size: 2.3rem;
