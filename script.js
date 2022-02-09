@@ -165,6 +165,7 @@ console.log(navHeight);
 // observer function
 const observerCallback = function (entries) {
   const [entry] = entries;
+  console.log(entry);
   if (!entry.isIntersecting) {
     nav.classList.add('sticky');
   } else {
@@ -186,6 +187,6 @@ const headerObserver = new IntersectionObserver(
 );
 
 // call observer
-headerObserver.observe(sectionOne);
+headerObserver.observe(header);
 ///////////////////////////////
 //////////////////////////////
