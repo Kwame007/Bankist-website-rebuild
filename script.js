@@ -160,12 +160,12 @@ nav.addEventListener('mouseout', fadeFunction.bind(1));
 // Sticky Navigation (Intersectionobserverapi)
 const header = document.querySelector('.header');
 const navHeight = nav.getBoundingClientRect().height;
-console.log(navHeight);
+// console.log(navHeight);
 
 // observer function
 const observerCallback = function (entries) {
   const [entry] = entries;
-  console.log(entry);
+  // console.log(entry);
   if (!entry.isIntersecting) {
     nav.classList.add('sticky');
   } else {
@@ -188,5 +188,31 @@ const headerObserver = new IntersectionObserver(
 
 // call observer
 headerObserver.observe(header);
+
+// Revealing elements on scroll
+// select all sections
+const sections = document.querySelectorAll('.section');
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+
+  // logic
+  if (!entry.isIntersecting) return;
+
+  entry.target.classList.remove('section--hidden');
+
+  // unobeserve
+  observer.unobserve(entry.target);
+};
+
+// call observer
+const sectionsObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+sections.forEach(section => {
+  sectionsObserver.observe(section);
+  section.classList.add('section--hidden');
+});
 ///////////////////////////////
 //////////////////////////////
