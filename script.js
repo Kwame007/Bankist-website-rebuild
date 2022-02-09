@@ -144,3 +144,48 @@ nav.addEventListener('mouseover', fadeFunction.bind(0.5));
 // set nav fade to default
 nav.addEventListener('mouseout', fadeFunction.bind(1));
 
+// Sticky Navigation
+// const initialCoords = sectionOne.getBoundingClientRect();
+// console.log(initialCoords);
+
+// window.addEventListener('scroll', function (e) {
+//   // console.log(window.scrollY);
+//   if (window.scrollY > initialCoords.top) {
+//     nav.classList.add('sticky');
+//   } else {
+//     nav.classList.remove('sticky');
+//   }
+// });
+
+// Sticky Navigation (Intersectionobserverapi)
+const header = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height;
+console.log(navHeight);
+
+// observer function
+const observerCallback = function (entries) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) {
+    nav.classList.add('sticky');
+  } else {
+    nav.classList.remove('sticky');
+  }
+};
+
+// observer option
+const observerOption = {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+};
+
+// observer
+const headerObserver = new IntersectionObserver(
+  observerCallback,
+  observerOption
+);
+
+// call observer
+headerObserver.observe(sectionOne);
+///////////////////////////////
+//////////////////////////////
