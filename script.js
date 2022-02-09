@@ -1,13 +1,30 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
-
+// variables
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 
+// navigation scrolling variable
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const sectionOne = document.getElementById('section--1');
+
+// navigation scrolling variable
+const navLink = document.querySelectorAll('.nav__link');
+
+// Menu fade animation variable
+const nav = document.querySelector('.nav');
+
+// tapped component variables
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+// nav links variables
+const navLinks = document.querySelector('.nav__links');
+
+// Modal window
 const openModal = function () {
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
@@ -30,23 +47,36 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-// smooth scroll
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const sectionOne = document.getElementById('section--1');
+// // navigation scrolling
+// navLink.forEach(element =>
+//   element.addEventListener('click', function (e) {
+//     e.preventDefault();
 
-// button event listener
+//     // smooth scrolling
+//     const id = this.getAttribute('href');
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//     console.log(id);
+//   })
+// );
+
+// navigation scrolling (with event delegation)
+// 1. Add event listener to common parent element
+// 2. Determine which element originated the event
+navLinks.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  // matching strategy
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+// button scrolling
 btnScrollTo.addEventListener('click', function (e) {
   //  get section coordinates
-  const sectionOneCoords = sectionOne.getBoundingClientRect();
-  console.log(sectionOneCoords);
-
-  // console.log(e.target.getBoundingClientRect());
-  // console.log('current scroll (x/y)', window.pageXOffset, window.pageYOffset);
-  // console.log(
-  //   'height/width',
-  //   document.documentElement.clientHeight,
-  //   document.documentElement.clientWidth
-  // );
+  // const sectionOneCoords = sectionOne.getBoundingClientRect();
+  // console.log(sectionOneCoords);
 
   // scrolling
   // window.scrollTo(
@@ -64,5 +94,29 @@ btnScrollTo.addEventListener('click', function (e) {
   // new way
   sectionOne.scrollIntoView({ behavior: 'smooth' });
 });
-///////////////////////////////
-////////////////////////////////
+
+// Tapped Component
+// tab buttons event
+tabsContainer.addEventListener('click', e => {
+  // get clicked element
+  const clickedElement = e.target.closest('.operations__tab');
+
+  // Guard cluase
+  if (!clickedElement) return;
+
+  // remove active class from all tabs button
+  tabs.forEach(tab => tab.classList.remove('operations__tab--active'));
+
+  // add active class to clicked element
+  clickedElement.classList.add('operations__tab--active');
+
+  // remove active state from content( non active contents)
+  tabsContent.forEach(content =>
+    content.classList.remove('operations__content--active')
+  );
+
+  // show content area
+  document
+    .querySelector(`.operations__content--${clickedElement.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
