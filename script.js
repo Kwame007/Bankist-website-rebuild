@@ -241,5 +241,56 @@ const imgObserver = new IntersectionObserver(loadImage, {
 });
 
 images.forEach(image => imgObserver.observe(image));
+
+// Slider
+const slides = document.querySelectorAll('.slide');
+
+//current slide
+let currentSlide = 0;
+// max slides
+const maxSlide = slides.length;
+
+// slider buttons
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
+
+// go to slide function
+const goToSlide = function (slider) {
+  slides.forEach(
+    // move slide
+    (slide, index) =>
+      (slide.style.transform = `translate(${100 * (index - slider)}%)`)
+  );
+};
+
+// next slide function
+const nextSlide = function () {
+  if (currentSlide === maxSlide - 1) {
+    currentSlide = 0;
+  } else {
+    currentSlide++;
+  }
+
+  goToSlide(currentSlide);
+};
+// next slide function
+const prevSlide = function () {
+  if (currentSlide === 0) {
+    currentSlide = maxSlide - 1;
+  } else {
+    currentSlide--;
+  }
+  goToSlide(currentSlide);
+};
+
+// set slide at translateX(0)
+goToSlide(0);
+
+// slide right
+btnRight.addEventListener('click', nextSlide);
+// slide left
+btnLeft.addEventListener('click', prevSlide);
+
+// TODO: IMPLEMENT AUTOMATIC SLIDER
 ///////////////////////////////
 //////////////////////////////
