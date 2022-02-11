@@ -1,6 +1,6 @@
 'use strict';
 
-// variables
+// GLOBAL VARIABLES
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
@@ -24,7 +24,10 @@ const tabsContent = document.querySelectorAll('.operations__content');
 // nav links variables
 const navLinks = document.querySelector('.nav__links');
 
-// Modal window
+///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+// MODAL WINDOW
 const openModal = function () {
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
@@ -47,6 +50,9 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
 // // navigation scrolling
 // navLink.forEach(element =>
 //   element.addEventListener('click', function (e) {
@@ -59,9 +65,14 @@ document.addEventListener('keydown', function (e) {
 //   })
 // );
 
-// navigation scrolling (with event delegation)
+///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+// NAGATION SCROLLING (with event delegation)
+
 // 1. Add event listener to common parent element
 // 2. Determine which element originated the event
+
 navLinks.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -72,7 +83,10 @@ navLinks.addEventListener('click', function (e) {
   }
 });
 
-// button scrolling
+///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+// BUTTON SCROLLING
 btnScrollTo.addEventListener('click', function (e) {
   //  get section coordinates
   // const sectionOneCoords = sectionOne.getBoundingClientRect();
@@ -95,7 +109,10 @@ btnScrollTo.addEventListener('click', function (e) {
   sectionOne.scrollIntoView({ behavior: 'smooth' });
 });
 
-// Tapped Component
+///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+// TAPPED COMPONENT
+
 // tab buttons event
 tabsContainer.addEventListener('click', e => {
   // get clicked element
@@ -121,8 +138,12 @@ tabsContainer.addEventListener('click', e => {
     .classList.add('operations__content--active');
 });
 
-// Menu fade animation
-// refactor
+///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+// MENU FADE ANIMATION
+
+// REFACTOR CODE
 const fadeFunction = function (e) {
   if (e.target.classList.contains('nav__link')) {
     const link = e.target;
@@ -144,7 +165,11 @@ nav.addEventListener('mouseover', fadeFunction.bind(0.5));
 // set nav fade to default
 nav.addEventListener('mouseout', fadeFunction.bind(1));
 
+///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
 // Sticky Navigation
+
 // const initialCoords = sectionOne.getBoundingClientRect();
 // console.log(initialCoords);
 
@@ -157,7 +182,7 @@ nav.addEventListener('mouseout', fadeFunction.bind(1));
 //   }
 // });
 
-// Sticky Navigation (Intersectionobserverapi)
+// STICKY NAVIGATION (Intersectionobserverapi)
 const header = document.querySelector('.header');
 const navHeight = nav.getBoundingClientRect().height;
 // console.log(navHeight);
@@ -189,7 +214,11 @@ const headerObserver = new IntersectionObserver(
 // call observer
 headerObserver.observe(header);
 
-// Revealing elements on scroll
+///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+// REVEALING ELEMENTS ON SCROLL
+
 // select all sections
 const sections = document.querySelectorAll('.section');
 const revealSection = function (entries, observer) {
@@ -215,7 +244,10 @@ sections.forEach(section => {
   section.classList.add('section--hidden');
 });
 
-// Lazy loading images
+///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+// LAZY LOADING IMAGES
 const images = document.querySelectorAll('img[data-src]');
 
 const loadImage = function (entries, observer) {
@@ -242,7 +274,10 @@ const imgObserver = new IntersectionObserver(loadImage, {
 
 images.forEach(image => imgObserver.observe(image));
 
-// Slider
+///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+// SLIDER
 const slides = document.querySelectorAll('.slide');
 
 //current slide
@@ -290,6 +325,9 @@ goToSlide(0);
 btnRight.addEventListener('click', nextSlide);
 // slide left
 btnLeft.addEventListener('click', prevSlide);
+
+///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 
 // TODO: IMPLEMENT AUTOMATIC SLIDER
 ///////////////////////////////
