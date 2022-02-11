@@ -276,56 +276,115 @@ images.forEach(image => imgObserver.observe(image));
 
 ///////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
+// SLIDER FUNCTION
+const sliderFunc = function () {
+  // SLIDER
+  const slides = document.querySelectorAll('.slide');
 
-// SLIDER
-const slides = document.querySelectorAll('.slide');
+  //current slide
+  let currentSlide = 0;
+  // max slides
+  const maxSlide = slides.length;
 
-//current slide
-let currentSlide = 0;
-// max slides
-const maxSlide = slides.length;
+  // slider buttons
+  const btnLeft = document.querySelector('.slider__btn--left');
+  const btnRight = document.querySelector('.slider__btn--right');
 
-// slider buttons
-const btnLeft = document.querySelector('.slider__btn--left');
-const btnRight = document.querySelector('.slider__btn--right');
+  // go to slide function
+  const goToSlide = function (slider) {
+    slides.forEach(
+      // move slide
+      (slide, index) =>
+        (slide.style.transform = `translate(${100 * (index - slider)}%)`)
+    );
+  };
 
-// go to slide function
-const goToSlide = function (slider) {
-  slides.forEach(
-    // move slide
-    (slide, index) =>
-      (slide.style.transform = `translate(${100 * (index - slider)}%)`)
-  );
+  // DOTS
+  const dotsWrapper = document.querySelector('.dots');
+  console.log(dotsWrapper);
+
+  const createDots = function () {
+    // create element
+    slides.forEach((_, index) => {
+      dotsWrapper.insertAdjacentHTML(
+        'beforeend',
+        `<button class='dots__dot' data-slide='${index}'></button>`
+      );
+    });
+  };
+  // active dot function()
+  const activateDot = function (slide) {
+    // select all dots and remove active class
+    document
+      .querySelectorAll('.dots__dot')
+      .forEach(dot => dot.classList.remove('dots__dot--active'));
+
+    // select base on data attributes and add active class
+    document
+      .querySelector(`.dots__dot[data-slide="${slide}"]`)
+      .classList.add('dots__dot--active');
+  };
+
+  // next slide function
+  const nextSlide = function () {
+    if (currentSlide === maxSlide - 1) {
+      currentSlide = 0;
+    } else {
+      currentSlide++;
+    }
+
+    goToSlide(currentSlide);
+    activateDot(currentSlide);
+  };
+  // next slide function
+  const prevSlide = function () {
+    if (currentSlide === 0) {
+      currentSlide = maxSlide - 1;
+    } else {
+      currentSlide--;
+    }
+    goToSlide(currentSlide);
+    activateDot(currentSlide);
+  };
+
+  // init function
+  const init = function () {
+    // create slider dots
+    createDots();
+
+    // show active dot on dom load
+    activateDot(0);
+
+    // set slide at translateX(0)
+    goToSlide(0);
+  };
+  // call init function
+  init();
+
+  // slide right
+  btnRight.addEventListener('click', nextSlide);
+  // slide left
+  btnLeft.addEventListener('click', prevSlide);
+
+  // slide with left and right arrow keys
+  document.addEventListener('keydown', function (e) {
+    e.key === 'ArrowRight' && nextSlide();
+    e.key === 'ArrowLeft' && prevSlide();
+  });
+
+  // dots events
+  dotsWrapper.addEventListener('click', function (e) {
+    if (e.target.classList.contains('dots__dot')) {
+      const [slideNumber] = e.target.dataset.slide;
+      e.target.classList.add('dots__dot--active');
+
+      goToSlide(slideNumber);
+      activateDot(slideNumber);
+    }
+  });
 };
-
-// next slide function
-const nextSlide = function () {
-  if (currentSlide === maxSlide - 1) {
-    currentSlide = 0;
-  } else {
-    currentSlide++;
-  }
-
-  goToSlide(currentSlide);
-};
-// next slide function
-const prevSlide = function () {
-  if (currentSlide === 0) {
-    currentSlide = maxSlide - 1;
-  } else {
-    currentSlide--;
-  }
-  goToSlide(currentSlide);
-};
-
-// set slide at translateX(0)
-goToSlide(0);
-
-// slide right
-btnRight.addEventListener('click', nextSlide);
-// slide left
-btnLeft.addEventListener('click', prevSlide);
-
+// Call slider function
+sliderFunc();
 ///////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 
