@@ -382,12 +382,19 @@ const sliderFunc = function () {
       activateDot(slideNumber);
     }
   });
+
+  // TODO: IMPLEMENT AUTOMATIC SLIDER
+  // setinterval function
+  setInterval(function () {
+    // call next slide
+    nextSlide();
+  }, 5000);
 };
+
 // Call slider function
 sliderFunc();
 ///////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 
-// TODO: IMPLEMENT AUTOMATIC SLIDER
 ///////////////////////////////
 //////////////////////////////
