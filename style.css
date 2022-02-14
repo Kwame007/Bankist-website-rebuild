@@ -43,7 +43,7 @@ body {
 
 .section--hidden {
   opacity: 0;
-  transform: translateY(8rem);
+  transform: translateY(15rem);
 }
 
 .section__title {
@@ -120,7 +120,7 @@ img {
   align-items: center;
   height: 9rem;
   width: 100%;
-  padding: 0 6rem;
+  padding: 2rem 6rem;
   z-index: 100;
 }
 
@@ -222,7 +222,7 @@ h1 {
 
 .features__img {
   width: 100%;
-  box-shadow: rgba(2, 12, 27, 0.7) 0px 10px 15px -10px;
+  /* box-shadow: rgba(2, 12, 27, 0.7) 0px 10px 15px -10px; */
 }
 
 .features__feature {
@@ -677,6 +677,36 @@ small {
   color: #bbb;
   font-size: 1.5rem;
   font-weight: 400;
+}
+
+/* navigation hover effect */
+@keyframes borderMove {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+    left: 0;
+  }
+}
+.nav__active {
+  /* border-bottom: 2px solid#5dd5b0; */
+  position: relative;
+}
+
+.nav__active::after {
+  position: absolute;
+  content: '';
+  width: 10%;
+  height: 2px;
+  left: 0%;
+  bottom: -5px;
+  transition: all 2s ease-in-out;
+  background-color: #5dd5b0;
+}
+
+.nav__item:hover .nav__active::after {
+  animation: borderMove 0.5s forwards;
 }
 
 @media (max-width: 968px) {
