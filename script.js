@@ -147,9 +147,9 @@ tabsContainer.addEventListener('click', e => {
 const removeBorder = function (e) {
   document.querySelectorAll('.nav__link').forEach(element => {
     //  remove border bottom
-    if (e.target.classList.contains('nav__active')) {
-      e.target.classList.remove('nav__active');
-      console.log(e.target);
+    if (element.classList.contains('nav__active')) {
+      element.classList.remove('nav__active');
+      console.log(element);
     }
   });
 };
@@ -165,6 +165,8 @@ const fadeFunction = function (e) {
     siblings.forEach(element => {
       if (element !== link) {
         element.style.opacity = this;
+        element.classList.remove('nav__active');
+      } else if (element.classList.contains('nav__link--btn')) {
         element.classList.remove('nav__active');
       } else {
         element.classList.add('nav__active');
@@ -258,7 +260,7 @@ const sectionsObserver = new IntersectionObserver(revealSection, {
 
 sections.forEach(section => {
   sectionsObserver.observe(section);
-  section.classList.add('section--hidden'); 
+  section.classList.add('section--hidden');
 });
 
 ///////////////////////////////////////////////////////////////
