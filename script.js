@@ -143,6 +143,17 @@ tabsContainer.addEventListener('click', e => {
 
 // MENU FADE ANIMATION
 
+// REMOVE BORDER FUNCTION (navigation)
+const removeBorder = function (e) {
+  document.querySelectorAll('.nav__link').forEach(element => {
+    //  remove border bottom
+    if (e.target.classList.contains('nav__active')) {
+      e.target.classList.remove('nav__active');
+      console.log(e.target);
+    }
+  });
+};
+
 // REFACTOR CODE
 const fadeFunction = function (e) {
   if (e.target.classList.contains('nav__link')) {
@@ -154,11 +165,17 @@ const fadeFunction = function (e) {
     siblings.forEach(element => {
       if (element !== link) {
         element.style.opacity = this;
+        element.classList.remove('nav__active');
+      } else {
+        element.classList.add('nav__active');
       }
     });
     logo.style.opacity = this;
   }
 };
+
+// remove border event
+document.addEventListener('mouseout', removeBorder);
 
 // set fade
 nav.addEventListener('mouseover', fadeFunction.bind(0.5));
@@ -262,6 +279,7 @@ const loadImage = function (entries, observer) {
     entry.target.classList.remove('lazy-img');
   });
 
+  // unobserve element
   observer.unobserve(entry.target);
 };
 
